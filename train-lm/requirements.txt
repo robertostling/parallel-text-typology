@@ -1,0 +1,4 @@
+unidecode
+mulres
+OpenNMT-py==1.2.0
+NumPy==1.18.5
