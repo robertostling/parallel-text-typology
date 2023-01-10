@@ -51,7 +51,7 @@ naive_loocv = False
 filter_by_agreement = False
 
 # Number of random samples for each classification
-n_samples = 9 # 401
+n_samples = 401 # Reduce to e.g. 9 for faster evaluation
 
 
 def read_representations(filename, restrict_isos=None):

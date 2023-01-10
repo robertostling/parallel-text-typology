@@ -12,6 +12,8 @@ process and we have published the generated data that we think may be of
 interest:
 
 * Östling, Robert & Kurfalı, Murathan. (2023). Parallel text typology dataset (1.0.0) [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.7506220](https://doi.org/10.5281/zenodo.7506220)
+* Östling, Robert & Kurfalı, Murathan. (2018). Projected word embeddings
+  dataset (1.0.0) [Data set]. [Copy at Stockholm University](http://dali.ling.su.se/projected-word-embeddings))
 
 # Components
 
