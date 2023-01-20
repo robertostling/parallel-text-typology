@@ -1,8 +1,10 @@
 # parallel-text-typology
 
-Code for the paper *Neural models can sometimes discover typological
-generalizations*, used for deriving resources from massively multilingual
-parallel texts.
+Code for for deriving resources from massively multilingual parallel texts,
+and exploring typological generalizations made by multilingual models with
+language embeddings.
+
+ * Östling, Robert & Kurfalı, Murathan. (2023). [Neural models can sometimes discover typological generalizations](http://arxiv.org/abs/2301.08115)
 
 See below under Evaluation for instructions on how to check
 which typological features are encoded by language representations. The first
