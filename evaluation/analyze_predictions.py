@@ -337,6 +337,12 @@ def plot_figures(name_results, vectors_baseline_f1):
                 ('lexical_svd', 'Lexical'),
             ],
             [
+                #('num', 'regexNum'),
+                ('mbert_mean', 'mBERT'),
+                ('xlm_roberta_base_mean', 'XLM-R-base'),
+                ('xlm_roberta_large_mean', 'XLM-R-large'),
+            ],
+            [
                 ('nmt_to_eng', 'NMTx2eng'),
                 ('nmt_from_eng', 'NMTeng2x'),
                 ('malaviya_mtcell', 'MTCell'),

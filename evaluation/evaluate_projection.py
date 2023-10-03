@@ -4,6 +4,7 @@ import lang2vec.lang2vec as l2v
 import mulres.utils
 
 import language_vectors 
+import evaluate_language_vectors 
 import analyze_predictions
 from family import family_from_iso
 
@@ -24,6 +25,18 @@ feature_table_code=dict(
         S_TEND_SUFFIX=r'\featlabel{Suffix} & Suffixing',
 )
 
+URIEL_EXCLUSIVE_FEATURES = [category.split('+') for category in '''
+    S_TEND_SUFFIX+S_BEFORE_PREFIX
+    S_RELATIVE_AFTER_NOUN+S_RELATIVE_BEFORE_NOUN
+    S_ADJECTIVE_AFTER_NOUN+S_ADJECTIVE_BEFORE_NOUN
+    S_NUMERAL_AFTER_NOUN+S_NUMERAL_BEFORE_NOUN
+    S_ADPOSITION_AFTER_NOUN+S_ADPOSITION_BEFORE_NOUN
+    S_OBJECT_AFTER_VERB+S_OBJECT_BEFORE_VERB
+    S_SUBJECT_AFTER_VERB+S_SUBJECT_BEFORE_VERB
+    S_OBLIQUE_AFTER_VERB+S_OBLIQUE_BEFORE_VERB
+
+'''.split()]
+
 def main():
     for use_exclusive in (False, True):
         if not use_exclusive:
@@ -39,23 +52,24 @@ def main():
         proj_syntax.update(language_vectors.read_affix_features())
 
         if use_exclusive:
-            for category, features in language_vectors.URIEL_CATEGORIES.items():
-                for feature_set in features:
-                    feature = feature_set[0]
-                    uriel_targets = uriel_syntax.get(feature)
-                    proj_targets = proj_syntax.get(feature)
-                    if len(feature_set) > 1:
-                        uriel_other = uriel_syntax.get(feature_set[1])
-                        if None not in (uriel_targets, uriel_other):
-                            language_vectors.ensure_exclusive(
-                                    uriel_targets, uriel_other)
-                        proj_other = proj_syntax.get(feature_set[1])
-                        if None not in (proj_targets, proj_other):
-                            before = len(proj_targets), len(proj_other)
-                            language_vectors.ensure_exclusive(
-                                    proj_targets, proj_other)
-                            after = len(proj_targets), len(proj_other)
-                            assert before == after
+            #for category, features in language_vectors.URIEL_CATEGORIES.items():
+            #    for feature_set in features:
+            for feature_set in URIEL_EXCLUSIVE_FEATURES:
+                feature = feature_set[0]
+                uriel_targets = uriel_syntax.get(feature)
+                proj_targets = proj_syntax.get(feature)
+                if len(feature_set) > 1:
+                    uriel_other = uriel_syntax.get(feature_set[1])
+                    if None not in (uriel_targets, uriel_other):
+                        evaluate_language_vectors.ensure_exclusive(
+                                uriel_targets, uriel_other)
+                    proj_other = proj_syntax.get(feature_set[1])
+                    if None not in (proj_targets, proj_other):
+                        before = len(proj_targets), len(proj_other)
+                        evaluate_language_vectors.ensure_exclusive(
+                                proj_targets, proj_other)
+                        after = len(proj_targets), len(proj_other)
+                        assert before == after
 
         all_family_agreements = []
         all_lang_agreements = []
